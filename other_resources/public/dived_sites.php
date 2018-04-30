@@ -26,7 +26,7 @@
         });
 
         var ctaLayer = new google.maps.KmlLayer({
-          url: '<?php echo '/other_resources/public/dived_sites_kml.php?ver=' . time() ?>' ,
+          url: '<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/other_resources/public/dived_sites_kml.php?ver=' . time() ?>' ,
           map: map
         });
       }
