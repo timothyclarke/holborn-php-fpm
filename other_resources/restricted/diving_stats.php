@@ -25,7 +25,7 @@ if ($sql_data->num_rows > 0) {
 }
 
 echo '<BR>';
-$sql_select = "select date,site_name,instructional from dives natural join sites group by date order by date desc";
+$sql_select = "select date,site_name,instructional from dives natural join sites group by site_id,date order by date desc";
 $sql_data = $conn->query($sql_select);
 if ($sql_data->num_rows > 0) {
   echo '<h2><A HREF=/other_resources/public/dived_sites.php>Dives Conducted</A></h2>';
