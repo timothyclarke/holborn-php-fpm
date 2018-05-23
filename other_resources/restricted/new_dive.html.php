@@ -36,7 +36,7 @@ if ($sql_data->num_rows > 0) {
   echo "\t</select>\n";
   echo '<BR>';
 }
-$sql_select = "select diver_id,diver_name from divers";
+$sql_select = "select diver_id,diver_name from divers order by diver_name";
 $sql_data = $conn->query($sql_select);
 if ($sql_data->num_rows > 0) {
   echo "\tSelect Diver 2&nbsp;\n";
@@ -48,7 +48,7 @@ if ($sql_data->num_rows > 0) {
   echo '<BR>';
 }
 
-$sql_select = "select diver_id,diver_name from divers";
+$sql_select = "select diver_id,diver_name from divers order by diver_name";
 $sql_data = $conn->query($sql_select);
 if ($sql_data->num_rows > 0) {
   echo "\tSelect Diver 3&nbsp;\n";
