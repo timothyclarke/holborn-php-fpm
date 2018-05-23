@@ -7,12 +7,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$get_diver_dives = "select site_id,site_name,count(dive_id) as dives from diver_dives natural join dives natural join sites group by site_id"
+$get_diver_dives = "select site_id,site_name,count(dive_id) as dives from diver_dives natural join dives natural join sites group by site_id";
 
 $dive_data = $conn->query($get_diver_dives);
 if ($dive_data->num_rows > 0) {
   echo '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document>';
-  while($dive_row = $sql_data->fetch_assoc()) {
+  while($dive_row = $dive_data->fetch_assoc()) {
     $gps_location = "select north,east from sites_gps where site_id = " . $dive_row['site_id'] ." order by gps_id limit 1";
     $gps_data = $conn->query($gps_location);
     if ($gps_data->num_rows > 0) {
