@@ -39,6 +39,34 @@
   $insert_dive =  "INSERT INTO dives (site_id, instructional, depth, time, date) VALUES ('". $diveSiteID ."','". $instructional ."','". $maxDepth ."','". $diveTime ."','". $diveDate ."')";
   echo 'Insert details are : ' . $insert_dive;
 
+  if ($conn->query($insert_dive) === TRUE) {
+    $last_id = $conn->insert_id;
+    echo "New Dive created successfully. Dive ID is: " . $last_id;
+    $insert_diverOne_dive = "INSERT INTO diver_dives ( dive_id, diver_id ) VALUES ('". $last_id ."','". $diverOneID ."')";
+    $insert_diverTwo_dive = "INSERT INTO diver_dives ( dive_id, diver_id ) VALUES ('". $last_id ."','". $diverTwoID ."')";
+    $insert_diverThree_dive = "INSERT INTO diver_dives ( dive_id, diver_id ) VALUES ('". $last_id ."','". $diverThreeID ."')";
+
+    if ($conn->query($insert_diverOne_dive) === TRUE) {
+      echo "Diver One Added to Dive<BR>\n"
+    } else {
+      echo "Error Adding First Diver to Dive: " . $sql . "<br>" . $conn->error;
+    }
+    if ($conn->query($insert_diverTwo_dive) === TRUE) {
+      echo "Diver Two Added to Dive<BR>\n"
+    } else {
+      echo "Error Adding Second Diver to Dive: " . $sql . "<br>" . $conn->error;
+    }
+
+  	if ( $diverThreeID != '0' ) {
+      if ($conn->query($insert_diverThree_dive) === TRUE) {
+        echo "Diver Three Added to Dive<BR>\n"
+      } else {
+        echo "Error Adding Third Diver to Dive: " . $sql . "<br>" . $conn->error;
+      }
+		}
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
   endif;
 
 ?>
