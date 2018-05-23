@@ -20,7 +20,7 @@ if ($sql_data->num_rows > 0) {
   echo "\t<select name='dive_site'>\n";
   while($row = $sql_data->fetch_assoc()) {
     echo "\t\t" . '<option value="' . $row['site_id'] . '">' . $row['site_name'] . "</option>\n";
-	}
+  }
   echo "\t</select>\n";
   echo '<BR>';
 }
@@ -32,7 +32,7 @@ if ($sql_data->num_rows > 0) {
   echo "\t<select name='diver_one'>\n";
   while($row = $sql_data->fetch_assoc()) {
     echo "\t\t" . '<option value="' . $row['diver_id'] . '">' . $row['diver_name'] . "</option>\n";
-	}
+  }
   echo "\t</select>\n";
   echo '<BR>';
 }
@@ -43,7 +43,7 @@ if ($sql_data->num_rows > 0) {
   echo "\t<select name='diver_two'>\n";
   while($row = $sql_data->fetch_assoc()) {
     echo "\t\t" . '<option value="' . $row['diver_id'] . '">' . $row['diver_name'] . "</option>\n";
-	}
+  }
   echo "\t</select>\n";
   echo '<BR>';
 }
@@ -56,7 +56,7 @@ if ($sql_data->num_rows > 0) {
   echo "\t\t<option value='0'>No Third Diver</option>\n";
   while($row = $sql_data->fetch_assoc()) {
     echo "\t\t" . '<option value="' . $row['diver_id'] . '">' . $row['diver_name'] . "</option>\n";
-	}
+  }
   echo "\t</select>\n";
   echo '<BR>';
 }

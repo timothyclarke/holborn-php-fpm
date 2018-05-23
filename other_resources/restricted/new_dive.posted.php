@@ -1,12 +1,12 @@
 <?php
-  $instructional	= '0';
-  $diveDate      	= htmlspecialchars($_POST['divedate']);
-  $maxDepth				= htmlspecialchars($_POST['depth']);
-  $diveTime				= htmlspecialchars($_POST['time']);
-  $diveSiteID			= htmlspecialchars($_POST['dive_site']);
-  $diverOneID			= htmlspecialchars($_POST['diver_one']);
-  $diverTwoID			= htmlspecialchars($_POST['diver_two']);
-  $diverThreeID		= htmlspecialchars($_POST['diver_three']);
+  $instructional  = '0';
+  $diveDate       = htmlspecialchars($_POST['divedate']);
+  $maxDepth       = htmlspecialchars($_POST['depth']);
+  $diveTime       = htmlspecialchars($_POST['time']);
+  $diveSiteID     = htmlspecialchars($_POST['dive_site']);
+  $diverOneID     = htmlspecialchars($_POST['diver_one']);
+  $diverTwoID     = htmlspecialchars($_POST['diver_two']);
+  $diverThreeID   = htmlspecialchars($_POST['diver_three']);
   echo "<H1>Adding a dive with the following details</H1>\n";
   echo '<BR><BR>' . "\n";
   echo 'Dive Date & time ' . $diveDate ."<BR>\n";
@@ -58,13 +58,13 @@
       echo "Error Adding Second Diver to Dive: " . $sql . "<br>" . $conn->error;
     }
 
-  	if ( $diverThreeID != '0' ) {
+    if ( $diverThreeID != '0' ) {
       if ($conn->query($insert_diverThree_dive) === TRUE) {
         echo "Diver Three Added to Dive<BR>\n";
       } else {
         echo "Error Adding Third Diver to Dive: " . $sql . "<br>" . $conn->error;
       }
-		}
+    }
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
