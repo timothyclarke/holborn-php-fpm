@@ -1,6 +1,6 @@
   <H1>New Dive Form</H1>
   <form name='NewDive' method='post' action=" <?php echo $_SERVER['PHP_SELF'] ?> ">
-  Enter Dive Date : <input type='datetime-local' name='divedate' required >
+  Enter Dive Date : <input type='date' name='divedate' required >
   <BR>
   <BR>
   Was this an instructional dive<input type="checkbox" name="instructional" value="instructional"><BR>
