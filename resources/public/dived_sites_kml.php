@@ -1,6 +1,6 @@
 <?php
 require '../../../db.inc.php';
-$conn = new mysqli($hostname, $username, $password, $dbname);
+$conn = new mysqli($host, $username, $password, $db_name);
 
 // Check connection
 if ($conn->connect_error) {

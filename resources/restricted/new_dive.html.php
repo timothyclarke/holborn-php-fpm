@@ -8,7 +8,7 @@
   Time  <input type="number" name="time" step="1" min="0" max="90"><BR>
 <?php
 require '../../../db.inc.php';
-$conn = new mysqli($hostname, $username, $password, $dbname);
+$conn = new mysqli($host, $username, $password, $db_name);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
