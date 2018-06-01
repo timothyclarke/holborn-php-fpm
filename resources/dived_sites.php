@@ -1,38 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <title>Holborn Divers : Sites we've visited this season</title>
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: {lat: 50.615, lng: -1.816}
-        });
-
-        var ctaLayer = new google.maps.KmlLayer({
-          url: '<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/resources/public/dived_sites_kml.php?ver=' . time() ?>' ,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdPmKRoNC4BzWbDlsngEbpBKQ-Av_lQ9w&callback=initMap">
-    </script>
-  </body>
+<?php
+$title = "Sites dived by Holborn Divers in 2018";
+$pagetype = "page"; // Allow only logged in users
+include "login/misc/pagehead.php";
+?>
+<meta name="viewport" content="initial-scale=1.0">
+<meta charset="utf-8">
+</head>
+<body>
+  <div class="container" style="height: 600px; ">
+    <iframe src='<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/resources/dived_sites_frame.php' ?>' width="100%" height="100%"></iframe>
+  </div>
+</body>
 </html>

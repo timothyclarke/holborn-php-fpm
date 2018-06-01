@@ -7,22 +7,8 @@ include "login/misc/pagehead.php";
 <meta charset="utf-8">
 </head>
 <body>
-  <div class="container">
-    <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: {lat: 50.615, lng: -1.816}
-        });
-
-        var ctaLayer = new google.maps.KmlLayer({
-          url: '<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/resources/all_sites_kml.php?ver=' . time() ?>' ,
-          map: map
-        });
-      }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdPmKRoNC4BzWbDlsngEbpBKQ-Av_lQ9w&callback=initMap">
-    </script>
+  <div class="container" style="height: 600px; ">
+    <iframe src='<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/resources/all_sites_frame.php' ?>' width="100%" height="100%"></iframe>
   </div>
 </body>
 </html>
