@@ -1,3 +1,3 @@
 <?php
-  header('Refresh: 2; url=/other_resources/public/dived_sites.php');
+  header('Refresh: 2; url=https://holbornscubalondon.co.uk/resources/dived_sites.php');
 ?>
