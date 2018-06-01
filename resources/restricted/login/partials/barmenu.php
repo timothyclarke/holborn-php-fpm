@@ -2,7 +2,8 @@
 
 // Define the buttons in the menu bar
 $barmenu = array(
-    "Page" => "index.php",
+    "index"     => "index.php",
+    "New Dive"  => "new_dive.php",
     "Other Pages" => array(
         "Page 2" => "page_2.php",
         "Google.com" => "//google.com",
