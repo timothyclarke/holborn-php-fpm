@@ -7,7 +7,7 @@
   Depth <input type="number" name="depth" step="0.1" min="0" max="50"><BR>
   Time  <input type="number" name="time" step="1" min="0" max="90"><BR>
 <?php
-require '../../../db.inc.php';
+require '../../db.inc.php';
 $conn = new mysqli($host, $username, $password, $db_name);
 // Check connection
 if ($conn->connect_error) {

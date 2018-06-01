@@ -1,5 +1,5 @@
 <?php
-require '../../../db.inc.php';
+require '../../db.inc.php';
 $conn = new mysqli($host, $username, $password, $db_name);
 
 // Check connection
