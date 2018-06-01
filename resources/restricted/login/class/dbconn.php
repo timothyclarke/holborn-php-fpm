@@ -90,10 +90,12 @@ class DbConn
     /**
     * Pulls tables from
     **/
-        $up_dir = realpath(__DIR__ . '../../..');
+        $up_dir = realpath(__DIR__ . '../');
 
         if (file_exists('dbconf.php')) {
             require 'dbconf.php';
+        } else if (file_exists('/var/www/db.inc.php')) {
+            require '/var/www/db.inc.php';
         } else {
             require $up_dir.'/dbconf.php';
         }
