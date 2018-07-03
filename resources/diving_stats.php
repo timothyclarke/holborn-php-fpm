@@ -19,26 +19,27 @@ include "login/misc/pagehead.php";
     $sql_data = $conn->query($sql_select);
     if ($sql_data->num_rows > 0) {
       while($row = $sql_data->fetch_assoc()) {
-        echo '<p><H2> Totals';
-        echo 'Diver Dives : ' . $row['diver_dives'] . '<BR>';
-        echo 'Dive Time   : ' . $row['total_dive_time'] . '<BR>';
-        echo '</H2></p>';
+        echo '<p><H2> Totals<H2>';
+        echo '<H3><UL>';
+        echo '<LI>Diver Dives : ' . $row['diver_dives'] . '</LI>';
+        echo '<LI>Dive Time   : ' . $row['total_dive_time'] . '</LI>';
+        echo '</UL></H3></p>';
       }
     }
 
     echo '<BR>';
-    $sql_select = "select date,site_name,instructional from dives natural join sites group by site_id,date order by date desc";
+    $sql_select = "select date, count(date) as dives_per_date, site_name, instructional from dives natural join sites group by site_id,date order by date desc";
     $sql_data = $conn->query($sql_select);
     if ($sql_data->num_rows > 0) {
       echo '<h2><A HREF=/resources/dived_sites.php>Dives Conducted</A></h2>';
-      echo '<table><tbody><tr><td width=100></td><td width=250></td><td></td><TR>';
-      echo '<tr><td>Date</td><td>Site</td><td>instructional</td><TR>';
+      echo '<table><tbody><tr><td width=100><td width=50></td></td><td width=250></td><td></td><TR>';
+      echo '<tr><td>Date</td><td>Dives</td><td>Site</td><td>instructional</td><TR>';
       while($row = $sql_data->fetch_assoc()) {
         $instructional = '';
         if ( $row['instructional'] ) {
           $instructional = 'TRUE';
         }
-        echo '<tr><td>' . $row['date'] . '</td><td>' . $row['site_name'] . '</td><td>' . $instructional . '</td></tr>';
+        echo '<tr><td>' . $row['date'] . '</td><td>' .  $row['dives_per_date'] . '</td><td>' .$row['site_name'] . '</td><td>' . $instructional . '</td></tr>';
       }
       echo '</tbody></table>';
     }
@@ -57,7 +58,7 @@ include "login/misc/pagehead.php";
     }
 
     echo '<BR>';
-    $sql_select = "select diver_name,count(dive_id) as dives,sum(time) as dive_time from divers natural join diver_dives natural join dives group by diver_id order by dives desc limit 15";
+    $sql_select = "select diver_name,count(dive_id) as dives,sum(time) as dive_time from divers natural join diver_dives natural join dives group by diver_id order by dives desc, dive_time desc limit 15";
     $sql_data = $conn->query($sql_select);
     if ($sql_data->num_rows > 0) {
       echo '<h2>General Dives</h2>';
