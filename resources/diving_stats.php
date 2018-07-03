@@ -14,11 +14,15 @@ include "login/misc/pagehead.php";
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql_select = "select count(dive_id) as diver_dives from diver_dives";
+    mysqli_set_charset($conn,"utf8");
+    $sql_select = "select count(dive_id) as diver_dives,sum(time) as total_dive_time from diver_dives natural join dives";
     $sql_data = $conn->query($sql_select);
     if ($sql_data->num_rows > 0) {
       while($row = $sql_data->fetch_assoc()) {
-        echo '<p><h2>Total number of Diver Dives : ' . $row['diver_dives'] . '</H2></p>';
+        echo '<p><H2> Totals';
+        echo 'Diver Dives : ' . $row['diver_dives'] . '<BR>';
+        echo 'Dive Time   : ' . $row['total_dive_time'] . '<BR>';
+        echo '</H2></p>';
       }
     }
 
@@ -27,7 +31,8 @@ include "login/misc/pagehead.php";
     $sql_data = $conn->query($sql_select);
     if ($sql_data->num_rows > 0) {
       echo '<h2><A HREF=/resources/dived_sites.php>Dives Conducted</A></h2>';
-      echo '<table><tbody><tr><td>Date</td><td>Site</td><td>instructional</td><TR>';
+      echo '<table><tbody><tr><td width=100></td><td width=250></td><td></td><TR>';
+      echo '<tr><td>Date</td><td>Site</td><td>instructional</td><TR>';
       while($row = $sql_data->fetch_assoc()) {
         $instructional = '';
         if ( $row['instructional'] ) {
@@ -39,11 +44,12 @@ include "login/misc/pagehead.php";
     }
 
     echo '<BR>';
-    $sql_select = "select diver_name,count(dive_id) as dives,sum(time) as dive_time from divers natural join diver_dives natural join dives where instructor=1 and instructional=1 group by diver_id order by dives desc";
+    $sql_select = "select diver_name,count(dive_id) as dives,sum(time) as dive_time from divers natural join diver_dives natural join dives where instructor=1 and instructional=1 group by diver_id order by dives desc, dive_time desc";
     $sql_data = $conn->query($sql_select);
     if ($sql_data->num_rows > 0) {
       echo '<h2>Instructed Dives</h2>';
-      echo '<table><tbody><tr><td>Instructor</td><td>No. Dives</td><td>In Water Time</TD><TR>';
+      echo '<table><tbody><tr><td width=150></td><td width=75></td><td></TD><TR>';
+      echo '<tr><td>Instructor</td><td>No. Dives</td><td>In Water Time</TD><TR>';
       while($row = $sql_data->fetch_assoc()) {
         echo '<tr><td>' . $row['diver_name'] . '</td><td>' . $row['dives'] . '</td><td>' .$row['dive_time'] . '</td></tr>';
       }
@@ -55,7 +61,8 @@ include "login/misc/pagehead.php";
     $sql_data = $conn->query($sql_select);
     if ($sql_data->num_rows > 0) {
       echo '<h2>General Dives</h2>';
-      echo '<table id="t03"><tbody padding=5><tr><td>Diver                          </td><td>No. Dives</td><td>In Water Time</TD><TR>';
+      echo '<table id="t03"><tbody padding=5><tr><td width=220></td><td width=75></td><td></TD><TR>';
+      echo '<tr><td>Diver</td><td>No. Dives</td><td>In Water Time</TD><TR>';
       while($row = $sql_data->fetch_assoc()) {
         echo '<tr><td>' . $row['diver_name'] . '</td><td>' . $row['dives'] . '</td><td>' .$row['dive_time'] . '</td></tr>';
       }
