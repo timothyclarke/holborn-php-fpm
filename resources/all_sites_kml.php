@@ -6,6 +6,7 @@ $conn = new mysqli($host, $username, $password, $db_name);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+mysqli_set_charset($conn,"utf8");
 
 $sql_select = "select site_name,north,east,gps_notes from sites natural join sites_gps";
 

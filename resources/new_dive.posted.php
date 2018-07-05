@@ -37,6 +37,7 @@
   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
   }
+  mysqli_set_charset($conn,"utf8");
 
   $insert_dive =  "INSERT INTO dives (site_id, instructional, depth, time, date) VALUES ('". $diveSiteID ."','". $instructional ."','". $maxDepth ."','". $diveTime ."','". $diveDate ."')";
 

@@ -6,6 +6,7 @@ $conn = new mysqli($host, $username, $password, $db_name);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+mysqli_set_charset($conn,"utf8");
 
 $get_diver_dives = "select site_id,site_name,count(dive_id) as dives from diver_dives natural join dives natural join sites group by site_id";
 

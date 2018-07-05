@@ -13,7 +13,8 @@ $conn = new mysqli($host, $username, $password, $db_name);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$sql_select = "select site_id,site_name from sites";
+mysqli_set_charset($conn,"utf8");
+$sql_select = "select site_id,site_name from sites where port is false";
 $sql_data = $conn->query($sql_select);
 if ($sql_data->num_rows > 0) {
   echo "\tSelect Dive Site\n";
