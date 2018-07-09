@@ -30,7 +30,7 @@
   echo "<H2>Adding details to Database</H2>\n";
 
 
-  if(!empty($_POST['instructional'])):
+//  if(!empty($_POST['instructional'])):
   require '../../db.inc.php';
   $conn = new mysqli($host, $username, $password, $db_name);
   // Check connection
@@ -69,6 +69,6 @@
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
-  endif;
+//  endif;
 
 ?>

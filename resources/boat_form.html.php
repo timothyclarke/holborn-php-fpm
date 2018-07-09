@@ -105,12 +105,12 @@
             </span>
            </div>
           </TD><TD></TD>
-          <TD>Spare Fuel Usage</TD><TD></TD>
           <TD ColSpan=2>
             <input type="number" name="FuelUsage" step="1" min="0" max="500" required>
           </TD>
         </TR>
-        <TR> <TD></TD><TD></TD> <TD><font color="green">Good</font></TD> <TD><font color="red">Bad</font></TD> </TR>
+        <TR><TD ColSpan=2></TD><TD><font color="green">Good</font></TD> <TD><font color="red">Bad</font></TD> </TR>
+        <TR ><TD ColSpan=4>&nbsp;</TD></TR>
         <TR>
           <TD>
            <div class="tooltip">Engine Rinsed for 5 mins
@@ -281,11 +281,11 @@
           <TD>
            <div class="tooltip">Lines, Bouys, Shot, Fenders
             <span class="tooltiptext">
-              Bad: Any Lines, Buoys, Shot or weight were Lost / Damaged / Destroyed
-              Good:
-               - 1x Show weight, 1x White plastic drum float, 1x float for 'tail'
-               - Lines : 2x 20, 1 x 10m, 1x 30meter
-               - 1 x Bow Line, 2x Stern Lines, 2x White Fenders, 2x Blue Fenders
+              Bad: Any Lines, Buoys, Shot or weight were Lost / Damaged / Destroyed<BR>
+              Good:<BR>
+               - 1x Show weight, 1x White plastic drum float, 1x float for 'tail'<BR>
+               - Lines : 2x 20, 1 x 10m, 1x 30m<BR>
+               - 1 x Bow Line, 2x Stern Lines, 2x White Fenders, 2x Blue Fenders<BR>
             </span>
            </div>
           </TD><TD></TD>
@@ -294,7 +294,7 @@
         </TR>
 
 
-        <TR ><TD BGCOLOR="#3399ff" ColSpan=4></TD></TR>
+        <TR ><TD BGCOLOR="#3399ff" ColSpan=4>&nbsp;</TD></TR>
 
         <TR>
           <TD> :</TD><TD></TD>
