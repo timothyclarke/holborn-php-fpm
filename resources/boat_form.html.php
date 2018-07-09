@@ -296,11 +296,8 @@
 
         <TR ><TD BGCOLOR="#3399ff" ColSpan=4>&nbsp;</TD></TR>
 
-        <TR>
-          <TD>Other Comments</TD><TD></TD>
-          <TD Colspan=2>
-             <TEXTAREA name="OtherComments" rows="10" cols="120">The Boat Sank<TEXTAREA>
-          </TD>
+        <TR><TD Colspan=4>Other Comments</TD></TR>
+        <TR><TD Colspan=4> <TEXTAREA name="OtherComments" rows="10" cols="80">The Boat Sank</TEXTAREA></TD> </TD>
         </TR>
 
       </TBODY>
