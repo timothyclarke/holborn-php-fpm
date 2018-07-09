@@ -66,7 +66,7 @@
               $sql_select = "select diver_id,diver_name from divers where cox is true order by diver_name";
               $sql_data = $conn->query($sql_select);
               if ($sql_data->num_rows > 0) {
-                echo "\t<select name='DiveManager'>\n";
+                echo "\t<select name='Cox2IC'>\n";
                 while($row = $sql_data->fetch_assoc()) {
                   echo "\t\t" . '<option value="' . $row['diver_id'] . '">' . $row['diver_name'] . "</option>\n";
                 }
@@ -109,8 +109,8 @@
             <input type="number" name="FuelUsage" step="1" min="0" max="500" required>
           </TD>
         </TR>
+        <TR><TD ColSpan=4>&nbsp;</TD></TR>
         <TR><TD ColSpan=2></TD><TD><font color="green">Good</font></TD> <TD><font color="red">Bad</font></TD> </TR>
-        <TR ><TD ColSpan=4>&nbsp;</TD></TR>
         <TR>
           <TD>
            <div class="tooltip">Engine Rinsed for 5 mins
@@ -281,29 +281,25 @@
           <TD>
            <div class="tooltip">Lines, Bouys, Shot, Fenders
             <span class="tooltiptext">
-              Bad: Any Lines, Buoys, Shot or weight were Lost / Damaged / Destroyed<BR>
+              Bad: <BR>Any Lines, Buoys, Shot or weight were Lost / Damaged / Destroyed<BR>
               Good:<BR>
                - 1x Show weight, 1x White plastic drum float, 1x float for 'tail'<BR>
-               - Lines : 2x 20, 1 x 10m, 1x 30m<BR>
-               - 1 x Bow Line, 2x Stern Lines, 2x White Fenders, 2x Blue Fenders<BR>
+               - Shot lines : 2x 20, 1 x 10m, 1x 30m<BR>
+               - Boat Lines : 1 x Bow Line, 2x Stern Lines, 2x White Fenders, 2x Blue Fenders<BR>
             </span>
            </div>
           </TD><TD></TD>
-          <TD> <input type='radio' name='BoatCovered' value='good' /> </TD>
-          <TD> <input type='radio' name='BoatCovered' value='bad' checked="checked"/> </TD>
+          <TD> <input type='radio' name='BoatLines' value='good' /> </TD>
+          <TD> <input type='radio' name='BoatLines' value='bad' checked="checked"/> </TD>
         </TR>
 
 
         <TR ><TD BGCOLOR="#3399ff" ColSpan=4>&nbsp;</TD></TR>
 
         <TR>
-          <TD> :</TD><TD></TD>
-          <TD>
-          </TD>
-        </TR>
-        <TR>
-          <TD> :</TD><TD></TD>
-          <TD>
+          <TD>Other Comments</TD><TD></TD>
+          <TD Colspan=2>
+             <TEXTAREA name="OtherComments" rows="10" cols="120">The Boat Sank<TEXTAREA>
           </TD>
         </TR>
 
