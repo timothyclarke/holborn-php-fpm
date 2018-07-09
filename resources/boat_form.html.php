@@ -132,14 +132,54 @@
           <TD> <input type='radio' name='BoatWashed' value='bad' checked="checked"/> </TD>
         </TR>
         <TR>
-          <TD> :</TD><TD></TD>
           <TD>
-          </TD>
+           <div class="tooltip">Main Isolator Off
+            <span class="tooltiptext">
+              Main Isolator is located in the console.<BR>
+              Switch to Off position
+            </span>
+           </div>
+          </TD><TD></TD>
+          <TD> <input type='radio' name='IsolatorOff' value='good' /> </TD>
+          <TD> <input type='radio' name='IsolatorOff' value='bad' checked="checked"/> </TD>
         </TR>
         <TR>
-          <TD> :</TD><TD></TD>
           <TD>
-          </TD>
+           <div class="tooltip">Console Hatch Open and Duck Oiled
+            <span class="tooltiptext">
+              Open Hatch in left side of Console<BR>
+              Lightly spray electrical connections with Duck Oil<BR>
+              Leave hatch open so no condensation will form
+            </span>
+           </div>
+          </TD><TD></TD>
+          <TD> <input type='radio' name='ConsoleHatch' value='good' /> </TD>
+          <TD> <input type='radio' name='ConsoleHatch' value='bad' checked="checked"/> </TD>
+        </TR>
+        <TR>
+          <TD>
+           <div class="tooltip">Electronics Wiped Down
+            <span class="tooltiptext">
+              GPS and Radio: Wipe with a cloth damped with fresh water<BR>
+              Dry off with a towel<BR>
+              DO NOT HOSE DOWN
+            </span>
+           </div>
+          </TD><TD></TD>
+          <TD> <input type='radio' name='ElectronicsDried' value='good' /> </TD>
+          <TD> <input type='radio' name='ElectronicsDried' value='bad' checked="checked"/> </TD>
+        </TR>
+        <TR BGCOLOR="#3399ff"><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+        <TR>
+          <TD>
+           <div class="tooltip">Flares Used
+            <span class="tooltiptext">
+             Used is bad <BR>
+            </span>
+           </div>
+          </TD><TD></TD>
+          <TD> <input type='radio' name='ElectronicsDried' value='good' /> </TD>
+          <TD> <input type='radio' name='ElectronicsDried' value='bad' checked="checked"/> </TD>
         </TR>
         <TR>
           <TD> :</TD><TD></TD>

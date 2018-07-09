@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 mysqli_set_charset($conn,"utf8");
-$sql_select = "select site_id,site_name from sites where port is false";
+$sql_select = "select site_id,site_name from sites where port is false order by site_name";
 $sql_data = $conn->query($sql_select);
 if ($sql_data->num_rows > 0) {
   echo "\tSelect Dive Site\n";
