@@ -78,18 +78,37 @@
         <TR>
           <TD>Engine Hours :</TD><TD></TD>
           <TD ColSpan=2>
-            <input type="number" name="RunningHours" step="0.1" min="0" max="500">
+            <input type="number" name="RunningHours" step="0.1" min="0" max="500" required>
           </TD>
         </TR>
         <TR>
           <TD>Approximate Fuel Usage</TD><TD></TD>
           <TD ColSpan=2>
-            <input type="number" name="FuelUsage" step="1" min="0" max="500">
+            <input type="number" name="FuelUsage" step="1" min="0" max="500" required>
           </TD>
+        </TR>
+        <TR>
+          <TD>
+           <div class="tooltip">Number of Flares Used
+            <span class="tooltiptext">
+             Used is bad <BR>
+            </span>
+           </div>
+          </TD><TD></TD>
+          <TD ColSpan=2> <input type="number" name="FlaresUsed" step="1" min="0" max="50" required></TD>
         </TR>
         <TR> <TD></TD><TD></TD> <TD><font color="green">Good</font></TD> <TD><font color="red">Bad</font></TD> </TR>
         <TR>
-          <TD>Engine Rinsed for 5 mins </TD><TD></TD>
+          <TD>
+           <div class="tooltip">Engine Rinsed for 5 mins
+            <span class="tooltiptext">
+             Remove plug from side of Engine<BR>
+             Screw in hose attachment plug and attach hose<BR>
+             Run fresh water from hose through engine for 5 mins<BR>
+             Replace origional plug back into engine
+            </span>
+           </div>
+          </TD><TD></TD>
           <TD> <input type='radio' name='Rinsed5Mins' value='good' /> </TD>
           <TD> <input type='radio' name='Rinsed5Mins' value='bad' checked="checked"/> </TD>
         </TR>
@@ -99,6 +118,17 @@
           <TD> <input type='radio' name='EngineAnodesWorn' value='bad' checked="checked"/> </TD>
         </TR>
         <TR>
+          <TD>
+           <div class="tooltip">Engine Oil Level
+            <span class="tooltiptext">
+              Removure engine has been lowered for atleast 10 mins<BR>
+              Remove Engine Cover<BR>
+              Remove dipstick on right hand side of the engine to check oil level<BR>
+              Ensure Oil level should be between the notches cut out of the dipstick<BR>
+              Replace Dipstick then replace Engine Cover.
+            </span>
+           </div>
+          </TD><TD></TD>
           <TD>Engine Oil Level</TD><TD></TD>
           <TD> <input type='radio' name='EngineOilLevel' value='good' /> </TD>
           <TD> <input type='radio' name='EngineOilLevel' value='bad' checked="checked"/> </TD>
@@ -169,18 +199,20 @@
           <TD> <input type='radio' name='ElectronicsDried' value='good' /> </TD>
           <TD> <input type='radio' name='ElectronicsDried' value='bad' checked="checked"/> </TD>
         </TR>
-        <TR BGCOLOR="#3399ff"><TD></TD><TD></TD><TD></TD><TD></TD></TR>
         <TR>
           <TD>
-           <div class="tooltip">Flares Used
+           <div class="tooltip">O2 Set Used
             <span class="tooltiptext">
-             Used is bad <BR>
+              Ensure O2 set is full. Ensure Diving Officer has been made aware if the O2 set has been used or is otherwise not full
             </span>
            </div>
           </TD><TD></TD>
-          <TD> <input type='radio' name='ElectronicsDried' value='good' /> </TD>
-          <TD> <input type='radio' name='ElectronicsDried' value='bad' checked="checked"/> </TD>
+          <TD> <input type='radio' name='O2Used' value='good' /> </TD>
+          <TD> <input type='radio' name='O2Used' value='bad' checked="checked"/> </TD>
         </TR>
+
+        <TR ><TD BGCOLOR="#3399ff" ColSpan=4></TD></TR>
+
         <TR>
           <TD> :</TD><TD></TD>
           <TD>
