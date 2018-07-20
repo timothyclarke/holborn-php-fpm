@@ -1,30 +1,45 @@
 <?php
-  $instructional  = '0';
+  $instructional  = htmlspecialchars($_POST['instructional');
   $diveDate       = htmlspecialchars($_POST['divedate']);
   $maxDepth       = htmlspecialchars($_POST['depth']);
   $diveTime       = htmlspecialchars($_POST['time']);
   $diveSiteID     = htmlspecialchars($_POST['dive_site']);
   $diverOneID     = htmlspecialchars($_POST['diver_one']);
+  $diverOneGas    = htmlspecialchars($_POST['diver_one_gas']);
+  $diverOneRole   = htmlspecialchars($_POST['diver_one_role']);
   $diverTwoID     = htmlspecialchars($_POST['diver_two']);
+  $diverTwoGas    = htmlspecialchars($_POST['diver_two_gas']);
+  $diverTwoRole   = htmlspecialchars($_POST['diver_two_role']);
   $diverThreeID   = htmlspecialchars($_POST['diver_three']);
+  $diverThreeGas  = htmlspecialchars($_POST['diver_three_gas']);
+  $diverThreeRole = htmlspecialchars($_POST['diver_three_role']);
+
   echo "<H1>Adding a dive with the following details</H1>\n";
   echo '<BR><BR>' . "\n";
   echo 'Dive Date & time ' . $diveDate ."<BR>\n";
   echo 'Max Depth ' . $maxDepth ."<BR>\n";
   echo 'Dive Time ' . $diveTime ."<BR>\n";
-  echo 'Dive site id ' . $diveSiteID ."<BR>\n";
-  echo 'Diver one id ' . $diverOneID ."<BR>\n";
-  echo 'Diver two id ' . $diverTwoID ."<BR>\n";
+  echo 'Dive site id ' .    $diveSiteID ."<BR>\n";
+  echo 'Diver one id ' .    $diverOneID ."<BR>\n";
+  echo 'Diver one gas ' .   $diverOneGas ."<BR>\n";
+  echo 'Diver one role ' .  $diverOneRole ."<BR>\n";
+  echo 'Diver two id ' .    $diverTwoID ."<BR>\n";
+  echo 'Diver two gas ' .   $diverTwoGas ."<BR>\n";
+  echo 'Diver two role ' .  $diverTwoRole ."<BR>\n";
   if ( $diverThreeID != '0' ):
-    echo 'Diver three id ' . $diverThreeID  ."<BR>\n";
+    echo 'Diver three id ' .    $diverThreeID  ."<BR>\n";
+    echo 'Diver three gas ' .   $diverThreeGas  ."<BR>\n";
+    echo 'Diver three role ' .  $diverThreeRole  ."<BR>\n";
   else:
     echo 'No third diver' . "<BR>\n";
   endif;
-  if(!empty($_POST['instructional'])):
-    echo 'Dive was instructional' . "<BR>\n";
-    $instructional = '1';
+  if($instructional != '0'):
+    echo 'Dive was instructional' . $instructional . "<BR>\n";
   else:
     echo 'Dive was recreational' . "<BR>\n";
+    $diverOneRole   == '0';
+    $diverTwoRole   == '0';
+    $diverThreeRole == '0';
   endif;
 
   echo "<H2>Adding details to Database</H2>\n";
@@ -44,9 +59,9 @@
   if ($conn->query($insert_dive) === TRUE) {
     $last_id = $conn->insert_id;
     echo "New Dive created successfully. Dive ID is: " . $last_id ."<BR>\n";
-    $insert_diverOne_dive = "INSERT INTO diver_dives ( dive_id, diver_id ) VALUES ('". $last_id ."','". $diverOneID ."')";
-    $insert_diverTwo_dive = "INSERT INTO diver_dives ( dive_id, diver_id ) VALUES ('". $last_id ."','". $diverTwoID ."')";
-    $insert_diverThree_dive = "INSERT INTO diver_dives ( dive_id, diver_id ) VALUES ('". $last_id ."','". $diverThreeID ."')";
+    $insert_diverOne_dive = "INSERT INTO diver_dives ( dive_id, diver_id, gas_id, instructional_role_id ) VALUES ('". $last_id ."','". $diverOneID ."','". $diverOneGas  ."','". $diverOneRole ."')";
+    $insert_diverTwo_dive = "INSERT INTO diver_dives ( dive_id, diver_id, gas_id, instructional_role_id ) VALUES ('". $last_id ."','". $diverTwoID ."','". $diverTwoGas  ."','". $diverTwoRole."')";
+    $insert_diverThree_dive = "INSERT INTO diver_dives ( dive_id, diver_id, gas_id, instructional_role_id ) VALUES ('". $last_id ."','". $diverThreeID ."','". $diverThreeGas  ."','". $diverThreeRole ."')";
 
     if ($conn->query($insert_diverOne_dive) === TRUE) {
       echo "Diver One Added to Dive<BR>\n";

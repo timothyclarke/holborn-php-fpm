@@ -1,69 +1,189 @@
   <H1>New Dive Form</H1>
   <form name='NewDive' method='post' action=" <?php echo $_SERVER['PHP_SELF'] ?> ">
-  Enter Dive Date : <input type='date' name='divedate' required >
-  <BR>
-  <BR>
-  Was this an instructional dive<input type="checkbox" name="instructional" value="instructional"><BR>
-  Depth <input type="number" name="depth" step="0.1" min="0" max="50"><BR>
-  Time  <input type="number" name="time" step="1" min="0" max="90"><BR>
-<?php
-require '../../db.inc.php';
-$conn = new mysqli($host, $username, $password, $db_name);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-mysqli_set_charset($conn,"utf8");
-$sql_select = "select site_id,site_name from sites where port is false order by site_name";
-$sql_data = $conn->query($sql_select);
-if ($sql_data->num_rows > 0) {
-  echo "\tSelect Dive Site\n";
-  echo "\t<select name='dive_site'>\n";
-  while($row = $sql_data->fetch_assoc()) {
-    echo "\t\t" . '<option value="' . $row['site_id'] . '">' . $row['site_name'] . "</option>\n";
-  }
-  echo "\t</select>\n";
-  echo '<BR>';
-}
-  echo '<BR>';
-$sql_select = "select diver_id,diver_name from divers order by diver_name";
-$sql_data = $conn->query($sql_select);
-if ($sql_data->num_rows > 0) {
-  echo "\tSelect Diver 1&nbsp;\n";
-  echo "\t<select name='diver_one'>\n";
-  while($row = $sql_data->fetch_assoc()) {
-    echo "\t\t" . '<option value="' . $row['diver_id'] . '">' . $row['diver_name'] . "</option>\n";
-  }
-  echo "\t</select>\n";
-  echo '<BR>';
-}
-$sql_select = "select diver_id,diver_name from divers order by diver_name";
-$sql_data = $conn->query($sql_select);
-if ($sql_data->num_rows > 0) {
-  echo "\tSelect Diver 2&nbsp;\n";
-  echo "\t<select name='diver_two'>\n";
-  while($row = $sql_data->fetch_assoc()) {
-    echo "\t\t" . '<option value="' . $row['diver_id'] . '">' . $row['diver_name'] . "</option>\n";
-  }
-  echo "\t</select>\n";
-  echo '<BR>';
-}
+    <TABLE><TBODY>
+      <TR><TD></TD><TD></TD><TD WIDTH=60></TD><TD></TD><TD></TD></TR>
+      <TR><TD WIDTH=120>&nbsp;</TD><TD></TD><TD WIDTH=105>&nbsp;</TD><TD></TD><TD></TD></TR>
+      <TR><TD>Enter Dive Date</TD><TD ColSpan=4><input type='date' name='divedate' required ></TD></TR>
+      <TR><TD>Depth</TD><TD ColSpan=4><input type="number" name="depth" step="0.1" min="0" max="50"></TD></TR>
+      <TR><TD>Time</TD><TD ColSpan=4><input type="number" name="time" step="1" min="0" max="90"></TD></TR>
+      <TR><TD ColSpan=5>&nbsp;</TD></TR>
 
-$sql_select = "select diver_id,diver_name from divers order by diver_name";
-$sql_data = $conn->query($sql_select);
-if ($sql_data->num_rows > 0) {
-  echo "\tSelect Diver 3&nbsp;\n";
-  echo "\t<select name='diver_three'>\n";
-  echo "\t\t<option value='0'>No Third Diver</option>\n";
-  while($row = $sql_data->fetch_assoc()) {
-    echo "\t\t" . '<option value="' . $row['diver_id'] . '">' . $row['diver_name'] . "</option>\n";
-  }
-  echo "\t</select>\n";
-  echo '<BR>';
-}
+      <?php
+        require '../../db.inc.php';
+        $conn = new mysqli($host, $username, $password, $db_name);
+        // Check connection
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        }
+        mysqli_set_charset($conn,"utf8");
+      ?>
 
-$conn->close();
-?>
-      <BR>
+      <TR>
+        <TD>Select Dive Site</TD>
+        <TD ColSpan=4>
+          <SELECT NAME='dive_site'>
+          <?php
+            $sql_select = "select site_id,site_name from sites where port is false order by site_name";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<OPTION VALUE="' . $row['site_id'] . '">' . $row['site_name'] . "</OPTION>\n";
+              }
+            }
+          ?>
+          </SELECT>
+        </TD>
+      </TR>
+      <TR>
+        <TD>Instructional Dive?</TD>
+        <TD ColSpan=4>
+          <SELECT NAME='instructional'>
+          <OPTION VALUE='0'>This dive was Recreational</OPTION>
+          <?php
+            $sql_select = "select instructional_types_id,instructional_description from instructional_types where instructional_types_id > 0 order by instructional_description";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<OPTION VALUE="' . $row['instructional_types_id'] . '">' . $row['instructional_description'] . "</OPTION>\n";
+              }
+            }
+          ?>
+          </SELECT>
+        </TD>
+
+      </TR>
+
+      <TR><TD ColSpan=5>&nbsp;</TD></TR>
+      <TR><TD ColSpan=2><TD>GAS</TD><TD>Instructional Role (if Applicable)</TD><TD></TD></TR>
+      <TR>
+        <TD>Select Diver 1</TD>
+        <TD>
+          <SELECT NAME='diver_one'>
+          <?php
+            $sql_select = "select diver_id,diver_name from divers order by diver_name";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<OPTION VALUE="' . $row['diver_id'] . '">' . $row['diver_name'] . "</OPTION>\n";
+              }
+            }
+          ?>
+          </SELECT>
+        </TD>
+        <TD>
+          <SELECT NAME='diver_one_gas'>
+          <?php
+            $sql_select = "select gas_id,gas from gas order by gas_id";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<OPTION VALUE="' . $row['gas_id'] . '">' . $row['gas'] . "</OPTION>\n";
+              }
+            }
+          ?>
+          </SELECT>
+        </TD>
+        <TD>
+          <?php
+            $sql_select = "select instructional_roles_id,instructional_role from instructional_roles where instructional_role = 'Instructor'";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<INPUT TYPE="HIDDEN" NAME="diver_one_role" VALUE="'. $row['instructional_roles_id'] . '">Instructor'."\n";
+              }
+            }
+          ?>
+        </TD>
+        <TD></TD>
+      </TR>
+
+      <TR>
+        <TD>Select Diver 2</TD>
+        <TD>
+          <SELECT NAME='diver_two'>
+          <?php
+            $sql_select = "select diver_id,diver_name from divers order by diver_name";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<OPTION VALUE="' . $row['diver_id'] . '">' . $row['diver_name'] . "</OPTION>\n";
+              }
+            }
+          ?>
+          </SELECT>
+        </TD>
+        <TD>
+          <SELECT NAME='diver_two_gas'>
+          <?php
+            $sql_select = "select gas_id,gas from gas order by gas_id";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<OPTION VALUE="' . $row['gas_id'] . '">' . $row['gas'] . "</OPTION>\n";
+              }
+            }
+          ?>
+          </SELECT>
+        </TD>
+        <TD>
+          <SELECT NAME='diver_two_role'>
+          <?php
+            $sql_select = "select instructional_roles_id,instructional_role from instructional_roles where instructional_role != 'Instructor' order by instructional_roles_id";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<OPTION VALUE="' . $row['instructional_roles_id'] . '">' . $row['instructional_role'] . "</OPTION>\n";
+              }
+            }
+          ?>
+          </SELECT>
+        </TD>
+        <TD></TD>
+      </TR>
+      <TR>
+        <TD>Select Diver 3</TD>
+        <TD>
+          <SELECT NAME='diver_three'>
+          <OPTION VALUE='0'>No Third Diver</OPTION>
+          <?php
+            $sql_select = "select diver_id,diver_name from divers order by diver_name";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<OPTION VALUE="' . $row['diver_id'] . '">' . $row['diver_name'] . "</OPTION>\n";
+              }
+            }
+          ?>
+          </SELECT>
+        </TD>
+        <TD>
+          <SELECT NAME='diver_three_gas'>
+          <?php
+            $sql_select = "select gas_id,gas from gas order by gas_id";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<OPTION VALUE="' . $row['gas_id'] . '">' . $row['gas'] . "</OPTION>\n";
+              }
+            }
+          ?>
+          </SELECT>
+        </TD>
+        <TD>
+          <SELECT NAME='diver_three_role'>
+          <?php
+            $sql_select = "select instructional_roles_id,instructional_role from instructional_roles where instructional_role != 'Instructor' order by instructional_roles_id";
+            $sql_data = $conn->query($sql_select);
+            if ($sql_data->num_rows > 0) {
+              while($row = $sql_data->fetch_assoc()) {
+                echo "\t\t" . '<OPTION VALUE="' . $row['instructional_roles_id'] . '">' . $row['instructional_role'] . "</OPTION>\n";
+              }
+            }
+          ?>
+          </SELECT>
+        </TD>
+        <TD></TD>
+      </TR>
+      </TBODY></TABLE>
       <input type="submit" value="Submit">
     </form>

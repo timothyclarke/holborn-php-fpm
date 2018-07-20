@@ -58,7 +58,7 @@ include "login/misc/pagehead.php";
     }
 
     echo '<BR>';
-    $sql_select = "select diver_name,count(dive_id) as dives,sum(time) as dive_time from divers natural join diver_dives natural join dives group by diver_id order by dives desc, dive_time desc limit 15";
+    $sql_select = "select diver_name,count(dive_id) as dives,sum(time) as dive_time from divers natural join diver_dives natural join dives where instructional=0 group by diver_id order by dives desc, dive_time desc limit 15";
     $sql_data = $conn->query($sql_select);
     if ($sql_data->num_rows > 0) {
       echo '<h2>General Dives</h2>';
