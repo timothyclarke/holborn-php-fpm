@@ -25,8 +25,8 @@ include "login/misc/pagehead.php";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
-                echo '<LI>Diver Dives : ' . $row['diver_dives'] . '</LI>';
-                echo '<LI>Dive Time   : ' . $row['total_dive_time'] . '</LI>';
+                echo '<LI>Diver Dives             : ' . $row['diver_dives'] . '</LI>';
+                echo '<LI>Consolidated Dive Time  : ' . $row['total_dive_time'] . '</LI>';
               }
             }
           ?>
