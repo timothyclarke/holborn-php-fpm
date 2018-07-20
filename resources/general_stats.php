@@ -1,6 +1,6 @@
 <?php
 $title = "Diving Stats";
-$pagetype = "adminpage"; // Allow only logged in users
+$pagetype = "userpage"; // Allow only logged in users
 include "login/misc/pagehead.php";
 ?>
 </head>
@@ -52,38 +52,6 @@ include "login/misc/pagehead.php";
         }
       ?>
     </TBODY></TABLE>
-
-    <BR>
-    <H2>Instructed Dives</H2>
-    <TABLE><TBODY>
-      <TR><TD WIDTH=150></TD><TD WIDTH=75></TD><TD></TD><TR>
-      <TR><TD>Instructor</TD><TD>No. Dives</TD><TD>In Water Time</TD><TR>
-      <?php
-        $sql_select = "select diver_name,count(dive_id) as dives,sum(time) as dive_time from divers natural join diver_dives natural join dives where instructor=1 and instructional=1 group by diver_id order by dives desc, dive_time desc";
-        $sql_data = $conn->query($sql_select);
-        if ($sql_data->num_rows > 0) {
-          while($row = $sql_data->fetch_assoc()) {
-            echo '<tr><td>' . $row['diver_name'] . '</td><td>' . $row['dives'] . '</td><td>' .$row['dive_time'] . '</td></tr>';
-          }
-        }
-      ?>
-    </TBODY></TABLE>
-    <BR>
-    <H2>General Dives</H2>
-    <TABLE ID="T03"><TBODY PADDING=5>
-      <TR><TD WIDTH=220></TD><TD WIDTH=75></TD><TD></TD><TR>
-      <TR><TD>Diver</TD><TD>No. Dives</TD><TD>In Water Time</TD><TR>
-      <?php
-        $sql_select = "select diver_name,count(dive_id) as dives,sum(time) as dive_time from divers natural join diver_dives natural join dives where instructional=0 group by diver_id order by dives desc, dive_time desc limit 15";
-        $sql_data = $conn->query($sql_select);
-        if ($sql_data->num_rows > 0) {
-          while($row = $sql_data->fetch_assoc()) {
-            echo '<tr><td>' . $row['diver_name'] . '</td><td>' . $row['dives'] . '</td><td>' .$row['dive_time'] . '</td></tr>';
-          }
-        }
-      ?>
-    </TBODY></TABLE>
-
     <?php
       $conn->close();
     ?>

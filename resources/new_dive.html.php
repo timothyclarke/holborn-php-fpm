@@ -40,11 +40,11 @@
           <SELECT NAME='instructional'>
           <OPTION VALUE='0'>This dive was Recreational</OPTION>
           <?php
-            $sql_select = "select instructional_types_id,instructional_description from instructional_types where instructional_types_id > 0 order by instructional_description";
+            $sql_select = "select instructional_types_id,instructional_name from instructional_types where instructional_types_id > 0 order by instructional_description";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
-                echo "\t\t" . '<OPTION VALUE="' . $row['instructional_types_id'] . '">' . $row['instructional_description'] . "</OPTION>\n";
+                echo "\t\t" . '<OPTION VALUE="' . $row['instructional_types_id'] . '">' . $row['instructional_name'] . "</OPTION>\n";
               }
             }
           ?>
@@ -73,11 +73,11 @@
         <TD>
           <SELECT NAME='diver_one_gas'>
           <?php
-            $sql_select = "select gas_id,gas from gas order by gas_id";
+            $sql_select = "select gas_id,gas_name from gas order by gas_id";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
-                echo "\t\t" . '<OPTION VALUE="' . $row['gas_id'] . '">' . $row['gas'] . "</OPTION>\n";
+                echo "\t\t" . '<OPTION VALUE="' . $row['gas_id'] . '">' . $row['gas_name'] . "</OPTION>\n";
               }
             }
           ?>
@@ -115,11 +115,11 @@
         <TD>
           <SELECT NAME='diver_two_gas'>
           <?php
-            $sql_select = "select gas_id,gas from gas order by gas_id";
+            $sql_select = "select gas_id,gas_name from gas order by gas_id";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
-                echo "\t\t" . '<OPTION VALUE="' . $row['gas_id'] . '">' . $row['gas'] . "</OPTION>\n";
+                echo "\t\t" . '<OPTION VALUE="' . $row['gas_id'] . '">' . $row['gas_name'] . "</OPTION>\n";
               }
             }
           ?>
@@ -159,11 +159,11 @@
         <TD>
           <SELECT NAME='diver_three_gas'>
           <?php
-            $sql_select = "select gas_id,gas from gas order by gas_id";
+            $sql_select = "select gas_id,gas from gas_name order by gas_id";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
-                echo "\t\t" . '<OPTION VALUE="' . $row['gas_id'] . '">' . $row['gas'] . "</OPTION>\n";
+                echo "\t\t" . '<OPTION VALUE="' . $row['gas_id'] . '">' . $row['gas_name'] . "</OPTION>\n";
               }
             }
           ?>
