@@ -12,6 +12,7 @@ $barmenu = array(
     "General Stats"     => "general_stats.php",
   ),
   "Restricted"   => array(
+    "New Diver"           => "new_diver.php",
     "Diving Stats"        => "diving_stats.php",
     "Detailed Dive Stats" => "detailed_stats.php",
   ),

@@ -1,5 +1,5 @@
 <?php
-  $instructional  = htmlspecialchars($_POST['instructional');
+  $instructional  = htmlspecialchars($_POST['instructional']);
   $diveDate       = htmlspecialchars($_POST['divedate']);
   $maxDepth       = htmlspecialchars($_POST['depth']);
   $diveTime       = htmlspecialchars($_POST['time']);

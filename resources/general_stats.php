@@ -37,15 +37,15 @@ include "login/misc/pagehead.php";
     <H2><A HREF=/resources/dived_sites.php>Dives Conducted</A></H2>
     <TABLE><TBODY>
     <TR><TD WIDTH=100><TD WIDTH=50></TD></TD><TD WIDTH=250></TD><TD></TD><TR>
-    <TR><TD>Date</TD><TD>Dives</TD><TD>Site</TD><TD>instructional</TD><TR>
+    <TR><TD>Date</TD><TD>Dives</TD><TD>Site</TD><TD></TD><TR>
       <?php
-        $sql_select = "select date, count(date) as dives_per_date, site_name, instructional from dives natural join sites group by site_id,date order by date desc";
+        $sql_select = "select date, count(date) as dives_per_date, site_name, educational_types_id from dives natural join sites group by site_id,date order by date desc";
         $sql_data = $conn->query($sql_select);
         if ($sql_data->num_rows > 0) {
           while($row = $sql_data->fetch_assoc()) {
             $instructional = '';
-            if ( $row['instructional'] ) {
-              $instructional = 'TRUE';
+            if ( $row['educational_types_id'] >1 ) {
+              $instructional = 'Training';
             }
             echo '<tr><td>' . $row['date'] . '</td><td>' .  $row['dives_per_date'] . '</td><td>' .$row['site_name'] . '</td><td>' . $instructional . '</td></tr>';
           }

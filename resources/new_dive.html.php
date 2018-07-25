@@ -40,11 +40,11 @@
           <SELECT NAME='instructional'>
           <OPTION VALUE='1'>This dive was Recreational</OPTION>
           <?php
-            $sql_select = "select educational_types_id,instructional_name from educational_types where educational_types_id > 1 order by instructional_description";
+            $sql_select = "select educational_types_id,educational_name from educational_types where educational_types_id > 1 order by educational_name";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
-                echo "\t\t" . '<OPTION VALUE="' . $row['educational_types_id'] . '">' . $row['instructional_name'] . "</OPTION>\n";
+                echo "\t\t" . '<OPTION VALUE="' . $row['educational_types_id'] . '">' . $row['educational_name'] . "</OPTION>\n";
               }
             }
           ?>
@@ -85,11 +85,11 @@
         </TD>
         <TD>
           <?php
-            $sql_select = "select instructional_roles_id,instructional_role from instructional_roles where instructional_role = 'Instructor'";
+            $sql_select = "select instructional_role_id,instructional_role from instructional_roles where instructional_role = 'instructor'";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
-                echo "\t\t" . '<INPUT TYPE="HIDDEN" NAME="diver_one_role" VALUE="'. $row['instructional_roles_id'] . '">Instructor'."\n";
+                echo "\t\t" . '<INPUT TYPE="HIDDEN" NAME="diver_one_role" VALUE="'. $row['instructional_role_id'] . '">instructor'."\n";
               }
             }
           ?>
@@ -128,11 +128,11 @@
         <TD>
           <SELECT NAME='diver_two_role'>
           <?php
-            $sql_select = "select instructional_roles_id,instructional_role from instructional_roles where instructional_role != 'Instructor' order by instructional_roles_id";
+            $sql_select = "select instructional_role_id,instructional_role from instructional_roles where instructional_role != 'instructor' order by instructional_role_id";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
-                echo "\t\t" . '<OPTION VALUE="' . $row['instructional_roles_id'] . '">' . $row['instructional_role'] . "</OPTION>\n";
+                echo "\t\t" . '<OPTION VALUE="' . $row['instructional_role_id'] . '">' . $row['instructional_role'] . "</OPTION>\n";
               }
             }
           ?>
@@ -159,7 +159,7 @@
         <TD>
           <SELECT NAME='diver_three_gas'>
           <?php
-            $sql_select = "select gas_id,gas from gas_name order by gas_id";
+            $sql_select = "select gas_id,gas_name from gas order by gas_id";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
@@ -172,11 +172,11 @@
         <TD>
           <SELECT NAME='diver_three_role'>
           <?php
-            $sql_select = "select instructional_roles_id,instructional_role from instructional_roles where instructional_role != 'Instructor' order by instructional_roles_id";
+            $sql_select = "select instructional_role_id,instructional_role from instructional_roles where instructional_role != 'instructor' order by instructional_role_id";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
-                echo "\t\t" . '<OPTION VALUE="' . $row['instructional_roles_id'] . '">' . $row['instructional_role'] . "</OPTION>\n";
+                echo "\t\t" . '<OPTION VALUE="' . $row['instructional_role_id'] . '">' . $row['instructional_role'] . "</OPTION>\n";
               }
             }
           ?>
