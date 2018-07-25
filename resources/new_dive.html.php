@@ -38,13 +38,13 @@
         <TD>Instructional Dive?</TD>
         <TD ColSpan=4>
           <SELECT NAME='instructional'>
-          <OPTION VALUE='0'>This dive was Recreational</OPTION>
+          <OPTION VALUE='1'>This dive was Recreational</OPTION>
           <?php
-            $sql_select = "select instructional_types_id,instructional_name from instructional_types where instructional_types_id > 0 order by instructional_description";
+            $sql_select = "select educational_types_id,instructional_name from educational_types where educational_types_id > 1 order by instructional_description";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
-                echo "\t\t" . '<OPTION VALUE="' . $row['instructional_types_id'] . '">' . $row['instructional_name'] . "</OPTION>\n";
+                echo "\t\t" . '<OPTION VALUE="' . $row['educational_types_id'] . '">' . $row['instructional_name'] . "</OPTION>\n";
               }
             }
           ?>

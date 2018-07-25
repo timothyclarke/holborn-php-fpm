@@ -21,7 +21,7 @@ include "login/misc/pagehead.php";
       <TR><TD WIDTH=150></TD><TD WIDTH=85></TD><TD Width=220></TD><TD WIDTH=45><TD WIDTH=45><TD WIDTH=85><TD WIDTH=85><TD WIDTH=55><TR>
       <TR><TD>Site Name</TD><TD>Date</TD><TD>Diver</TD><TD>Depth</TD><TD>Time</TD><TD>Gas</TD><TD>Role</TD><TD>Exercise</TD><TR>
       <?php
-        $sql_select = "select sites.site_name as site_name, dives.date as dive_date, divers.diver_name as diver_name, dives.depth as depth, dives.time as dive_time, gas.gas_name as gas, instructional_roles.instructional_role as role, instructional_roles.instructional_role_id as role_id, instructional_types.instructional_name as exercise FROM diver_dives NATURAL JOIN dives NATURAL JOIN divers NATURAL JOIN sites NATURAL JOIN gas NATURAL JOIN instructional_types NATURAL JOIN instructional_roles group by dive_id,diver_id order by dive_date, dive_id";
+        $sql_select = "select sites.site_name as site_name, dives.date as dive_date, divers.diver_name as diver_name, dives.depth as depth, dives.time as dive_time, gas.gas_name as gas, instructional_roles.instructional_role as role, instructional_roles.instructional_role_id as role_id, educational_types.instructional_name as exercise FROM diver_dives NATURAL JOIN dives NATURAL JOIN divers NATURAL JOIN sites NATURAL JOIN gas NATURAL JOIN educational_types NATURAL JOIN instructional_roles group by dive_id,diver_id order by dive_date, dive_id";
         $sql_data = $conn->query($sql_select);
         if ($sql_data->num_rows > 0) {
           while($row = $sql_data->fetch_assoc()) {

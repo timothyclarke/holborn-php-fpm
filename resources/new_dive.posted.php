@@ -33,8 +33,8 @@
   else:
     echo 'No third diver' . "<BR>\n";
   endif;
-  if($instructional != '0'):
-    echo 'Dive was instructional' . $instructional . "<BR>\n";
+  if($instructional != '1'):
+    echo 'Dive was educational' . $instructional . "<BR>\n";
   else:
     echo 'Dive was recreational' . "<BR>\n";
     $diverOneRole   == '0';
@@ -54,7 +54,7 @@
   }
   mysqli_set_charset($conn,"utf8");
 
-  $insert_dive =  "INSERT INTO dives (site_id, instructional, depth, time, date) VALUES ('". $diveSiteID ."','". $instructional ."','". $maxDepth ."','". $diveTime ."','". $diveDate ."')";
+  $insert_dive =  "INSERT INTO dives (site_id, educational_types_id, depth, time, date) VALUES ('". $diveSiteID ."','". $instructional ."','". $maxDepth ."','". $diveTime ."','". $diveDate ."')";
 
   if ($conn->query($insert_dive) === TRUE) {
     $last_id = $conn->insert_id;
