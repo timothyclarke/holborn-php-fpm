@@ -115,7 +115,7 @@ class DbConn
     public function __construct()
     {
         // Pulls tables from dbconf.php file
-        $up_dir = realpath(__DIR__ . '/..');
+        $up_dir = realpath(__DIR__ . '/../../../..');
         if (file_exists('dbconf.php')) {
             require 'dbconf.php';
         } else {
