@@ -5,6 +5,10 @@
 * all other controls and classes
 **/
 try {
+    if (!isset($_SESSION)) {
+        session_start();
+        date_default_timezone_set($conf->timezone);
+    }
     require dirname(dirname(__DIR__))."/vendor/autoload.php";
 
     if (!isset($userrole)) {
