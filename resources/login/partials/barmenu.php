@@ -2,18 +2,11 @@
 
 // Define the buttons in the menu bar
 $barmenu = array(
-  "New Dive Form" => "new_dive.php",
-  "Sites"         => array(
-    "All Sites"         => "all_sites.php",
-    "Dived Sites"       => "dived_sites.php",
-  ),
-  "Other Pages"   => array(
-    "Main Holborn Page" => "/",
-    "General Stats"     => "general_stats.php",
-  ),
-  "Restricted"   => array(
-    "New Diver"           => "new_diver.php",
-    "Diving Stats"        => "diving_stats.php",
-    "Detailed Dive Stats" => "detailed_stats.php",
-  ),
+    "Homepage" => "index.php",
+    "Private Page" => "page_2.php",
+    "Public Page" => "page_3.php",
+    "Other Pages" => array(
+        "PHP-Login Github" => "https://github.com/therecluse26/PHP-Login",
+        "Site Root" => "/"),
+    "Admin Page" => "page_4.php",
 );

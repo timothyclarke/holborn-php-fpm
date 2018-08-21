@@ -1,9 +1,27 @@
 <?php
-class profileData extends DbConn
-{
-    public static function pullUserFields($uid, $fieldarr) {
+/**
+* PHPLogin\ProfileData extends DbConn
+*/
+namespace PHPLogin;
 
-        $fields = implode (", ", $fieldarr);
+/**
+* User profile data functions
+*
+* Handles user profile data in member_info table
+*/
+class ProfileData extends DbConn
+{
+    /**
+     * Pulls fields from `member_info` table for a given user
+     *
+     * @param  string $user_id  User ID
+     * @param  array  $fieldarr Array of fields to return
+     *
+     * @return array
+     */
+    public static function pullUserFields(string $user_id, array $fieldarr): array
+    {
+        $fields = implode(", ", $fieldarr);
 
         try {
             //Pull specific user data
@@ -11,37 +29,67 @@ class profileData extends DbConn
             $tbl_memberinfo = $db->tbl_memberinfo;
 
             // prepare sql and bind parameters
-            $stmt = $db->conn->prepare("SELECT $fields from $tbl_memberinfo WHERE userid = :userid");
-            $stmt->bindParam(':userid', $uid);
+            $stmt = $db->conn->prepare("SELECT $fields from $tbl_memberinfo
+                                        WHERE userid = :userid");
+            $stmt->bindParam(':userid', $user_id);
             $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $result['status'] = true;
             return $result;
-
-        } catch (PDOException $e) {
-
-                $result = "Error: " . $e->getMessage();
+        } catch (\PDOException $e) {
+            http_response_code(500);
+            $result['status'] = false;
+            $result['message'] = "Error: " . $e->getMessage();
         }
     }
 
-    public static function pullAllUserInfo($uid) {
+    /**
+     * Pulls all user profile data
+     *
+     * @param  string $user_id User ID
+     *
+     * @return array User profile data array
+     */
+    public static function pullAllUserInfo(string $user_id): array
+    {
+        try {
+            //Pull user info into edit form
+            $db = new DbConn;
+            $tbl_memberinfo = $db->tbl_memberinfo;
 
-        //Pull user info into edit form
-        $db = new DbConn;
-        $tbl_memberinfo = $db->tbl_memberinfo;
+            // prepare sql and bind parameters
+            $stmt = $db->conn->prepare("SELECT FirstName, LastName, Phone, Address1,
+                                    Address2, City, State, Country, Bio, UserImage
+                                    from $tbl_memberinfo WHERE userid = :userid");
+            $stmt->bindParam(':userid', $user_id);
+            $stmt->execute();
 
-        // prepare sql and bind parameters
-        $stmt = $db->conn->prepare("SELECT firstname, lastname, phone, address1, address2, city, state, country, bio, userimage from $tbl_memberinfo WHERE userid = :userid");
-        $stmt->bindParam(':userid', $uid);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        return $result;
-
+            if ($stmt->rowCount() == 0) {
+                $result = array('FirstName' => null, 'LastName' => null, 'Phone' => null,
+                      'Address1' => null, 'Address2' => null, 'City' => null,
+                      'State' => null, 'Country' => null, 'Bio' => null, 'UserImage' => null);
+            }
+            $result['status'] = true;
+            return $result;
+        } catch (\Exception $e) {
+            $result['status'] = false;
+            $result['message'] = $e->getMessage();
+            return $result;
+        }
     }
 
-    public static function upsertUserInfo($uid, $dataarray) {
-
+    /**
+     * Upserts user profile data
+     *
+     * @param string $user_id   User ID
+     * @param array  $dataarray New user profile data
+     *
+     * @return mixed
+     */
+    public static function upsertUserInfo(string $user_id, array $dataarray)
+    {
         //Upsert user data
         $db = new DbConn;
         $tbl_memberinfo = $db->tbl_memberinfo;
@@ -51,8 +99,8 @@ class profileData extends DbConn
 
         $insdata = implode('\', \'', $dataarray);
 
-        foreach($dataarray as $key => $value){
-            if (isset($updata)){
+        foreach ($dataarray as $key => $value) {
+            if (isset($updata)) {
                 $updata = $updata.$key.' = '.$db->conn->quote($value).', ';
             } else {
                 $updata = $key.' = '.$db->conn->quote($value).', ';
@@ -62,12 +110,11 @@ class profileData extends DbConn
         $updata = rtrim($updata, ", ");
 
         // prepare sql and bind parameters
-        $stmt = $db->conn->prepare("INSERT INTO ".$tbl_memberinfo." (userid, {$columnString}) values ('$uid', {$valueString}) ON DUPLICATE KEY UPDATE $updata");
+        $stmt = $db->conn->prepare("INSERT INTO ".$tbl_memberinfo." (userid, {$columnString})
+                                    values ('$user_id', {$valueString}) ON DUPLICATE KEY UPDATE $updata");
 
         $status = $stmt->execute(array_values($dataarray));
 
         return $status;
-
     }
-
 }
