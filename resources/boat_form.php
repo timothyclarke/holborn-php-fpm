@@ -34,6 +34,7 @@ include "login/misc/pagehead.php";
   }
   </style>
 <body>
+    <?php require 'login/misc/pullnav.php'; ?>
     <div class="container">
       <?php
         if (!empty($_POST)):

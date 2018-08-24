@@ -5,6 +5,7 @@ include "login/misc/pagehead.php";
 ?>
 </head>
 <body>
+    <?php require 'login/misc/pullnav.php'; ?>
     <div class="container">
       <?php
         if (!empty($_POST)):
