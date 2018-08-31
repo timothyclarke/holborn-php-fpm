@@ -1,6 +1,6 @@
 <?php
 $title = "Boat Report Form";
-$pagetype = "userpage"; // Allow only logged in users
+$userrole = "Coxwains"; // Allow only logged in users
 include "login/misc/pagehead.php";
 ?>
 </head>

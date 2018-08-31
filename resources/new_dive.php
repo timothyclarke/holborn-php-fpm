@@ -1,6 +1,6 @@
 <?php
 $title = "New Dive Form";
-$pagetype = "userpage"; // Allow only logged in users
+$userrole = "Dive Manager"; // Allow only logged in users
 include "login/misc/pagehead.php";
 ?>
 </head>

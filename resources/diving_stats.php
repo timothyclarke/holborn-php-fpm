@@ -1,6 +1,6 @@
 <?php
 $title = "Diving Stats";
-$pagetype = "adminpage"; // Allow only logged in users
+$userrole = "DO"; // Allow only logged in users
 include "login/misc/pagehead.php";
 ?>
 </head>
