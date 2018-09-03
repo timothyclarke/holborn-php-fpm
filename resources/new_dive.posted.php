@@ -33,13 +33,13 @@
   else:
     echo 'No third diver' . "<BR>\n";
   endif;
-  if($instructional != '1'):
+  if($instructional == '1'):
     echo 'Dive was educational' . $instructional . "<BR>\n";
+    $diverOneRole   = '0';
+    $diverTwoRole   = '0';
+    $diverThreeRole = '0';
   else:
-    echo 'Dive was recreational' . "<BR>\n";
-    $diverOneRole   == '0';
-    $diverTwoRole   == '0';
-    $diverThreeRole == '0';
+    echo 'Dive was educational' . $instructional . "<BR>\n";
   endif;
 
   echo "<H2>Adding details to Database</H2>\n";
