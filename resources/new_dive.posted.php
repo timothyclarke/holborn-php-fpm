@@ -34,7 +34,7 @@
     echo 'No third diver' . "<BR>\n";
   endif;
   if($instructional == '1'):
-    echo 'Dive was educational' . $instructional . "<BR>\n";
+    echo 'Dive was recreational' . "<BR>\n";
     $diverOneRole   = '0';
     $diverTwoRole   = '0';
     $diverThreeRole = '0';

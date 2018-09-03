@@ -34,7 +34,7 @@ include "login/misc/pagehead.php";
           }
         }
       ?>
-    </TBODY></TABLE>;
+    </TBODY></TABLE>
 
     <?php
       $conn->close();
