@@ -18,6 +18,7 @@ include "login/misc/pagehead.php";
       mysqli_set_charset($conn,"utf8");
     ?>
     <H2>Detailed Dive Stats</H2>
+    <H4>Download Dives :<A HREF='/resources/download.detailed_educational_dives.php'>Instructional</A> <A HREF='/resources/download.detailed_recreational_dives.php'>Recreational</A></H4>
     <TABLE ID="T03"><TBODY PADDING=5>
       <TR><TD WIDTH=150></TD><TD WIDTH=85></TD><TD Width=220></TD><TD WIDTH=45><TD WIDTH=45><TD WIDTH=85><TD WIDTH=85><TD WIDTH=55><TR>
       <TR><TD>Site Name</TD><TD>Date</TD><TD>Diver</TD><TD>Depth</TD><TD>Time</TD><TD>Gas</TD><TD>Role</TD><TD>Exercise</TD><TR>
