@@ -14,14 +14,20 @@ commands:
       - run:
           name: Docker Build
           command: |
+            source ${BASH_ENV}
             docker build . -t timothyclarke/holborndiver-resources:${BUILD_NUMBER}
+      - run:
+          name: List images
+          command: docker images
       - run:
           name: Docker Login
           command: |
+            source ${BASH_ENV}
             docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
       - run:
           name: Docker Push
           command: |
+            source ${BASH_ENV}
             docker push timothyclarke/holborndiver-resources:${BUILD_NUMBER}
 
 jobs:
