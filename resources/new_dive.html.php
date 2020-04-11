@@ -60,7 +60,7 @@
         <TD>
           <SELECT NAME='diver_one'>
           <?php
-            $sql_select = "select diver_id,diver_name from divers order by diver_name";
+            $sql_select = "select diver_id,diver_name from divers where current=1 order by diver_name";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
@@ -102,7 +102,7 @@
         <TD>
           <SELECT NAME='diver_two'>
           <?php
-            $sql_select = "select diver_id,diver_name from divers order by diver_name";
+            $sql_select = "select diver_id,diver_name from divers where current=1 order by diver_name";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {
@@ -146,7 +146,7 @@
           <SELECT NAME='diver_three'>
           <OPTION VALUE='0'>No Third Diver</OPTION>
           <?php
-            $sql_select = "select diver_id,diver_name from divers order by diver_name";
+            $sql_select = "select diver_id,diver_name from divers where current=1 order by diver_name";
             $sql_data = $conn->query($sql_select);
             if ($sql_data->num_rows > 0) {
               while($row = $sql_data->fetch_assoc()) {

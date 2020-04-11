@@ -1,0 +1,98 @@
+version: 2.1
+
+executors:
+  docker:
+    docker:
+      - image: docker:latest
+    working_directory: ~
+
+commands:
+  build-and-push:
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Docker Build
+          command: docker build -t timothyclarke/holborndiver-resources:${BUILD_NUMBER} .
+      - run:
+          name: Docker Login
+          command: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+      - run:
+          name: Docker Push
+          command: docker push timothyclarke/holborndiver-resources:${BUILD_NUMBER}
+
+jobs:
+  Primary Branch Build:
+    # This is the primary branch build. It will publish artifacts to Artifactory and at the conclusion of the job
+    executor: docker
+    environment:
+      BASE_VERSION: 0.1
+    steps:
+      - checkout
+      - run:
+          name: Persist Build number
+          command: |
+            echo "${BASE_VERSION}.${CIRCLE_BUILD_NUM}"              > build-number.txt
+            echo "export BUILD_NUMBER=\"$(cat build-number.txt)\""  >> $BASH_ENV
+#      - run#:
+#          name: Package Helm
+#          command: |
+#            cd .circleci
+#            tar -czf ../<< pipeline.parameters.service-name >>.helm.tgz helm
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build-number.txt
+#            - << pipeline.parameters.service-name >>.helm.tgz
+      - build-and-push
+      - add_ssh_keys:
+          fingerprints:
+            - "e7:5e:2e:dd:8c:4d:eb:90:86:c2:a5:73:05:96:36:93"
+      - run:
+          name: Tag Commit
+          command: |
+            git tag ${BUILD_NUMBER}
+            git push origin --tags
+
+  Alt Branch Build:
+    # This is the primary branch build. It will publish artifacts to Artifactory and at the conclusion of the job
+    executor: docker
+    steps:
+      - checkout
+      - run:
+          name: Persist Build number
+          command: |
+            echo "branch-${CIRCLE_BRANCH}.${CIRCLE_BUILD_NUM}"      > build-number.txt
+            echo "export BUILD_NUMBER=\"$(cat build-number.txt)\""  >> $BASH_ENV
+#      - run#:
+#          name: Package Helm
+#          command: |
+#            cd .circleci
+#            tar -czf ../<< pipeline.parameters.service-name >>.helm.tgz helm
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build-number.txt
+#            - << pipeline.parameters.service-name >>.helm.tgz
+      - build-and-push
+
+workflows:
+  version: 2
+  Primary Branch:
+    jobs:
+      - Primary Branch Build:
+          context: Build
+          filters:
+            branches:
+              only:
+                - master
+
+
+  Alternate Branches:
+    jobs:
+      - Alt Branch Build:
+          context: Build
+          filters:
+            branches:
+              ignore:
+                - master

@@ -1,6 +1,6 @@
 <?php
-$title = "New Diver Form";
-$pagetype = "DO"; // Allow only logged in users
+$title = "New Dive Site Form";
+$userrole = "Dive Manager"; // Allow only logged in users
 include "login/misc/pagehead.php";
 ?>
 </head>
@@ -9,9 +9,9 @@ include "login/misc/pagehead.php";
     <div class="container">
       <?php
         if (!empty($_POST)):
-          include 'new_diver.posted.php';
+          include 'new_dive_site.posted.php';
         else:
-          include 'new_diver.html.php';
+          include 'new_dive_site.html.php';
         endif;
       ?>
     </div>
