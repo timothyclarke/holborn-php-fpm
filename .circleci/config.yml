@@ -13,13 +13,16 @@ commands:
       - setup_remote_docker
       - run:
           name: Docker Build
-          command: docker build . -t timothyclarke/holborndiver-resources:${BUILD_NUMBER}
+          command: |
+            docker build . -t timothyclarke/holborndiver-resources:${BUILD_NUMBER}
       - run:
           name: Docker Login
-          command: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+          command: |
+            docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
       - run:
           name: Docker Push
-          command: docker push timothyclarke/holborndiver-resources:${BUILD_NUMBER}
+          command: |
+            docker push timothyclarke/holborndiver-resources:${BUILD_NUMBER}
 
 jobs:
   Primary Branch Build:
