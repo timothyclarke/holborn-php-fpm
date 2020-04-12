@@ -16,7 +16,7 @@ commands:
           command: |
             source ${BASH_ENV}
             docker build . \
-              -t timothyclarke/holborndiver-resources:${BUILD_NUMBER}
+              -t timothyclarke/holborndiver-resources:${BUILD_NUMBER} \
               -t timothyclarke/holborndiver-resources:latest
       - run:
           name: List images
