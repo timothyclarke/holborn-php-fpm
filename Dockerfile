@@ -4,9 +4,9 @@ RUN set -ex \
   && curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
   && composer global require hirak/prestissimo --no-plugins --no-scripts \
-  && mkdir -p /var/www
+  && mkdir -p /var/www/html
 
-WORKDIR /var/www
+WORKDIR /var/www/html
 COPY resources resources
 RUN set -ex \
   && cd resources \
@@ -30,4 +30,4 @@ RUN set -ex \
   && docker-php-source delete \
   && apk del .build-deps
 
-COPY --from=composer /var/www/resources /var/www/resources
+COPY --from=composer /var/www/html/resources /var/www/html/resources
