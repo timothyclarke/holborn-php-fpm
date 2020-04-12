@@ -15,7 +15,9 @@ commands:
           name: Docker Build
           command: |
             source ${BASH_ENV}
-            docker build . -t timothyclarke/holborndiver-resources:${BUILD_NUMBER}
+            docker build . \
+              -t timothyclarke/holborndiver-resources:${BUILD_NUMBER}
+              -t timothyclarke/holborndiver-resources:latest
       - run:
           name: List images
           command: docker images
@@ -29,6 +31,7 @@ commands:
           command: |
             source ${BASH_ENV}
             docker push timothyclarke/holborndiver-resources:${BUILD_NUMBER}
+            docker push timothyclarke/holborndiver-resources:latest
 
 jobs:
   Primary Branch Build:
